@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">The Meal</string>
+
+    <string name="hello_chef">Hola, Mr Chef</string>
+    <string name="home_greeting">¿ Que vamos a cocinar hoy ?</string>
+    <string name="recommended">Recomendación del día</string>
+    <string name="categories">Categorias</string>
+    <string name="ingredients">Ingredients :</string>
+    <string name="instructions">Instructions :</string>
+    <string name="watch_video">Watch Video</string>
+    <string name="text_search">Buscar Receta</string>
+
 </resources>
