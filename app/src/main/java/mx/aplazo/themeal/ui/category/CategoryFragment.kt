@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import mx.aplazo.themeal.R
-import mx.aplazo.themeal.Tools.showImage
+import mx.aplazo.themeal.utils.Tools.showImage
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.data.model.MealFilter
 import mx.aplazo.themeal.databinding.FragmentCategoryBinding

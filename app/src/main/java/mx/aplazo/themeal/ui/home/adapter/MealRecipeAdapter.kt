@@ -4,15 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import mx.aplazo.themeal.R
-import mx.aplazo.themeal.Tools.showImage
+import mx.aplazo.themeal.utils.Tools.showImage
 import mx.aplazo.themeal.data.model.MealDetail
 import mx.aplazo.themeal.databinding.MealItemRandomBinding
 
-class ListRecommendationAdapter(
+class MealRecipeAdapter(
     private val mOnSelectListener: OnSelectListener
-) : RecyclerView.Adapter<ListRecommendationAdapter.ListViewHolder>() {
+) : RecyclerView.Adapter<MealRecipeAdapter.ListViewHolder>() {
     private val dataRec = mutableListOf<MealDetail>()
 
     fun setData(items: MutableList<MealDetail>) {
@@ -35,7 +34,6 @@ class ListRecommendationAdapter(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = dataRec[position]
-
         with(holder) {
             binding.tvNameMeal.text = data.strMeal
             binding.tvArea.text = data.strArea

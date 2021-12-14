@@ -17,20 +17,19 @@ import mx.aplazo.themeal.R
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.data.model.MealDetail
 import mx.aplazo.themeal.data.model.MealFilter
-import mx.aplazo.themeal.databinding.FragmentCategoryBinding
 import mx.aplazo.themeal.databinding.FragmentHomeBinding
 import mx.aplazo.themeal.ui.home.adapter.CategoryAdapter
-import mx.aplazo.themeal.ui.home.adapter.ListRecommendationAdapter
+import mx.aplazo.themeal.ui.home.adapter.MealRecipeAdapter
 import mx.aplazo.themeal.ui.home.adapter.OnCategorySelectListener
 import mx.aplazo.themeal.ui.home.adapter.OnSelectListener
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
+class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener, View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by viewModels()
-    private lateinit var listRecommendationAdapter: ListRecommendationAdapter
+    private lateinit var mealRecipeAdapter: MealRecipeAdapter
     private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreateView(
@@ -38,6 +37,8 @@ class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.toolbarHome.ibSearch.setOnClickListener(this)
+        binding.toolbarHome.clSearch.setOnClickListener(this)
         homeViewModel.getCategories()
         homeViewModel.getRandomMeal()
         observers()
@@ -58,11 +59,11 @@ class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
 
     private fun showMealRandom(mealRandom: MutableList<MealDetail>) {
         binding.rvRecommendation.setHasFixedSize(true)
-        listRecommendationAdapter = ListRecommendationAdapter(this)
+        mealRecipeAdapter = MealRecipeAdapter(this)
         binding.rvRecommendation.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        binding.rvRecommendation.adapter = listRecommendationAdapter
-        listRecommendationAdapter.setData(mealRandom)
+        binding.rvRecommendation.adapter = mealRecipeAdapter
+        mealRecipeAdapter.setData(mealRandom)
     }
 
     private fun showCategories(mealRandom: MutableList<Category>) {
@@ -87,6 +88,10 @@ class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
     override fun onClickCategory(category: Category) {
         val bundle = bundleOf("category" to category)
         findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
+    }
+
+    override fun onClick(v: View?) {
+        findNavController().navigate(R.id.action_homeFragment_to_SearchFragment)
     }
 
 }

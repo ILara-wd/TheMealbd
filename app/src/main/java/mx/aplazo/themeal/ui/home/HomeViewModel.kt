@@ -7,7 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.data.model.MealDetail
-import mx.aplazo.themeal.domain.CategoriesUseCase
 import mx.aplazo.themeal.domain.HomeUseCase
 import mx.aplazo.themeal.domain.RandomMealUseCase
 import javax.inject.Inject

@@ -20,7 +20,11 @@ interface MealApiClient {
     suspend fun getDetailMeal(@Query("i") i: String): Response<MealDetailsModel>
 
     @GET("search.php")
-    suspend fun getMealSearch(@Query("f") f: String): Response<MealDetailsModel>
+    suspend fun getMealSearchLetter(@Query("f") f: String): Response<MealDetailsModel>
+
+    @GET("search.php")
+    suspend fun getMealSearchByName(@Query("s") s: String): Response<MealDetailsModel>
+
 
     @GET("random.php")
     suspend fun getRandomMeal(): Response<MealDetailsModel>

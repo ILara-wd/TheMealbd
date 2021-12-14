@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import mx.aplazo.themeal.R
-import mx.aplazo.themeal.Tools.showImage
+import mx.aplazo.themeal.utils.Tools.showImage
 import mx.aplazo.themeal.data.model.MealFilter
 import mx.aplazo.themeal.databinding.ItemRecipeFoodBinding
 

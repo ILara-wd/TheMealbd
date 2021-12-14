@@ -1,4 +1,4 @@
-package mx.aplazo.themeal
+package mx.aplazo.themeal.utils
 
 import android.app.Activity
 import android.content.Context
@@ -7,6 +7,7 @@ import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import mx.aplazo.themeal.R
 
 object Tools {
 

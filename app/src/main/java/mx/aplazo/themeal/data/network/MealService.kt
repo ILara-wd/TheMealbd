@@ -27,7 +27,7 @@ class MealService @Inject constructor(private val api: MealApiClient) {
 
     suspend fun getMealSearch(food: String): MutableList<MealDetail> =
         withContext(Dispatchers.IO) {
-            val response = api.getMealSearch(f = food)
+            val response = api.getMealSearchByName(s = food)
             response.body()?.meals ?: mutableListOf()
         }
 

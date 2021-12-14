@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import mx.aplazo.themeal.R
-import mx.aplazo.themeal.Tools.showImage
+import mx.aplazo.themeal.utils.Tools.showImage
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.databinding.ItemCategoriesBinding
 

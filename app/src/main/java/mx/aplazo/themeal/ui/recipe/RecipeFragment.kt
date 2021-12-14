@@ -9,18 +9,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import mx.aplazo.themeal.R
-import mx.aplazo.themeal.Tools.openSource
-import mx.aplazo.themeal.Tools.shareSource
-import mx.aplazo.themeal.Tools.showImage
-import mx.aplazo.themeal.Tools.ternary
-import mx.aplazo.themeal.data.model.Category
+import mx.aplazo.themeal.utils.Tools.openSource
+import mx.aplazo.themeal.utils.Tools.shareSource
+import mx.aplazo.themeal.utils.Tools.showImage
+import mx.aplazo.themeal.utils.Tools.ternary
 import mx.aplazo.themeal.data.model.MealDetail
 import mx.aplazo.themeal.data.model.MealFilter
-import mx.aplazo.themeal.databinding.FragmentCategoryBinding
 import mx.aplazo.themeal.databinding.FragmentMealDetailBinding
-import mx.aplazo.themeal.ui.category.CategoryViewModel
-import mx.aplazo.themeal.ui.home.adapter.OnCategorySelectListener
-import mx.aplazo.themeal.ui.home.adapter.OnSelectListener
 
 @AndroidEntryPoint
 class RecipeFragment : Fragment() {
