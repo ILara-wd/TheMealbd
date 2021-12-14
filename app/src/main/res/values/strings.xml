@@ -17,5 +17,6 @@
     <string name="text_instructions">Instructiones:</string>
     <string name="text_ingredients">Ingredientes:</string>
     <string name="text_recipes">Recetas: %s</string>
+    <string name="text_detail_area_category">%s | %s</string>
 
 </resources>

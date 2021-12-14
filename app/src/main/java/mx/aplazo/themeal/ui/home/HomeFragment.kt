@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import mx.aplazo.themeal.R
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.data.model.MealDetail
+import mx.aplazo.themeal.data.model.MealFilter
 import mx.aplazo.themeal.databinding.FragmentCategoryBinding
 import mx.aplazo.themeal.databinding.FragmentHomeBinding
 import mx.aplazo.themeal.ui.home.adapter.CategoryAdapter
@@ -74,13 +75,18 @@ class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
     }
 
     override fun onClickMeal(mealDetail: MealDetail) {
-        findNavController().navigate(R.id.action_homeFragment_to_searchMealFragment)
+        val mealFilter = MealFilter(
+            strMeal = mealDetail.strMeal.orEmpty(),
+            strMealThumb = mealDetail.strMealThumb.orEmpty(),
+            idMeal = mealDetail.idMeal.orEmpty()
+        )
+        val bundle = bundleOf("mealFilter" to mealFilter)
+        findNavController().navigate(R.id.action_homeFragment_to_searchMealFragment, bundle)
     }
 
     override fun onClickCategory(category: Category) {
         val bundle = bundleOf("category" to category)
         findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
     }
-
 
 }
