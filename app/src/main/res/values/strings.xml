@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">The Meal</string>
+
+    <string name="hello_chef">Hola, Mr Chef</string>
+    <string name="home_greeting">¿ Que vamos a cocinar hoy ?</string>
+    <string name="recommended">Recomendación del día</string>
+    <string name="categories">Categorias</string>
+    <string name="ingredients">Ingredients :</string>
+    <string name="instructions">Instructions :</string>
+    <string name="watch_video">Watch Video</string>
+    <string name="text_search">Buscar Receta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_watch_youtube">Ver en Youtube</string>
+    <string name="text_share_recipe">Compartir Receta</string>
+    <string name="text_source">Source</string>
+    <string name="text_instructions">Instructiones:</string>
+    <string name="text_ingredients">Ingredientes:</string>
+    <string name="text_recipes">Recetas: %s</string>
+    <string name="text_detail_area_category">%s | %s</string>
+
+</resources>
