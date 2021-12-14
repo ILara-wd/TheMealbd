@@ -2,6 +2,7 @@ package mx.aplazo.themeal.data.network
 
 import mx.aplazo.themeal.data.model.CategoryModel
 import mx.aplazo.themeal.data.model.MealDetailsModel
+import mx.aplazo.themeal.data.model.MealFilterModel
 import mx.aplazo.themeal.data.model.MealModel
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,7 +14,7 @@ interface MealApiClient {
     suspend fun getAllCategories(): Response<CategoryModel>
 
     @GET("filter.php")
-    suspend fun getMealsByCategory(@Query("c") c: String): Response<MutableList<MealModel>>
+    suspend fun getMealsByCategory(@Query("c") c: String): Response<MealFilterModel>
 
     @GET("lookup.php")
     suspend fun getDetailMeal(@Query("i") i: String): Response<MealDetailsModel>

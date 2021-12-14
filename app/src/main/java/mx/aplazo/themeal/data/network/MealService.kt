@@ -2,10 +2,7 @@ package mx.aplazo.themeal.data.network
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import mx.aplazo.themeal.data.model.Category
-import mx.aplazo.themeal.data.model.MealDetail
-import mx.aplazo.themeal.data.model.MealDetailsModel
-import mx.aplazo.themeal.data.model.MealModel
+import mx.aplazo.themeal.data.model.*
 import javax.inject.Inject
 
 class MealService @Inject constructor(private val api: MealApiClient) {
@@ -16,10 +13,10 @@ class MealService @Inject constructor(private val api: MealApiClient) {
             response.body()?.categories ?: mutableListOf()
         }
 
-    suspend fun getMealsByCategory(category: String): MutableList<MealModel> =
+    suspend fun getMealsByCategory(category: String): MutableList<MealFilter> =
         withContext(Dispatchers.IO) {
             val response = api.getMealsByCategory(c = category)
-            response.body() ?: mutableListOf()
+            response.body()?.meals ?: mutableListOf()
         }
 
     suspend fun getDetailMeal(idMeal: String): MealDetail =

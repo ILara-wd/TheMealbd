@@ -5,43 +5,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import mx.aplazo.themeal.data.model.Category
-import mx.aplazo.themeal.data.model.MealDetail
-import mx.aplazo.themeal.data.model.MealDetailsModel
-import mx.aplazo.themeal.domain.CategoriesUseCase
-import mx.aplazo.themeal.domain.RandomMealUseCase
+import mx.aplazo.themeal.data.model.MealFilter
+import mx.aplazo.themeal.domain.MealsByCategoryUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class CategoryViewModel @Inject constructor(
-    val categoriesUseCase: CategoriesUseCase,
-    val randomMealUseCase: RandomMealUseCase
+    val mealsByCategoryUseCase: MealsByCategoryUseCase
 ) : ViewModel() {
 
-    val categories: MutableLiveData<MutableList<Category>> = MutableLiveData()
-    val randomMeal: MutableLiveData<MutableList<MealDetail>> = MutableLiveData()
-    val showMessage: MutableLiveData<String> = MutableLiveData("")
     val isLoading = MutableLiveData<Boolean>()
+    val recipeByCategory = MutableLiveData<MutableList<MealFilter>>()
 
-    fun getCategories() {
+    fun getRecipeByCategory(category: String) {
         viewModelScope.launch {
             isLoading.postValue(true)
-            val response = categoriesUseCase()
-            if (response.isEmpty()) {
-                showMessage.postValue("Categories Empty")
-                isLoading.postValue(false)
-            } else {
-                categories.postValue(response)
-                isLoading.postValue(false)
-            }
-        }
-    }
-
-    fun getRandomMeal() {
-        viewModelScope.launch {
-            isLoading.postValue(true)
-            val mealRandom = randomMealUseCase()
-            randomMeal.postValue(mealRandom)
+            val mealByCategory = mealsByCategoryUseCase(category = category)
+            recipeByCategory.postValue(mealByCategory)
             isLoading.postValue(false)
         }
     }

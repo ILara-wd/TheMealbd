@@ -114,8 +114,3 @@ data class MealDetail(
     @SerializedName("dateModified")
     var dateModified: Any? = null
 )
-//data class MealDetail(
-//    @SerializedName("strMeal") val strMeal: String,
-//    @SerializedName("strMealThumb") val strMealThumb: String,
-//    @SerializedName("idMeal") val idMeal: String,
-//)

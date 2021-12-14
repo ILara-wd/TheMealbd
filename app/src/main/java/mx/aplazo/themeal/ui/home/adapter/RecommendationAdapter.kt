@@ -1,4 +1,4 @@
-package mx.aplazo.themeal.ui.category.adapter
+package mx.aplazo.themeal.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import mx.aplazo.themeal.R
+import mx.aplazo.themeal.Tools.showImage
 import mx.aplazo.themeal.data.model.MealDetail
 import mx.aplazo.themeal.databinding.MealItemRandomBinding
 
@@ -39,11 +40,7 @@ class ListRecommendationAdapter(
             binding.tvNameMeal.text = data.strMeal
             binding.tvArea.text = data.strArea
             binding.tvCategory.text = data.strCategory
-            Glide.with(itemView.context)
-                .load(data.strMealThumb)
-                .placeholder(R.drawable.placeholder)
-                .into(binding.ivMeal)
-
+            itemView.context.showImage(data.strMealThumb.orEmpty(), binding.ivMeal)
             binding.contentItem.setOnClickListener {
                 mOnSelectListener.onClickMeal(mealDetail = data)
             }

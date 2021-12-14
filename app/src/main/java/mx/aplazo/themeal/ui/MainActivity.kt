@@ -2,38 +2,26 @@ package mx.aplazo.themeal.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import mx.aplazo.themeal.data.model.Category
-import mx.aplazo.themeal.data.model.MealDetail
 import mx.aplazo.themeal.databinding.ActivityMainBinding
-import mx.aplazo.themeal.ui.category.CategoryViewModel
-import mx.aplazo.themeal.ui.category.adapter.CategoryAdapter
-import mx.aplazo.themeal.ui.category.adapter.ListRecommendationAdapter
-import mx.aplazo.themeal.ui.category.adapter.OnCategorySelectListener
-import mx.aplazo.themeal.ui.category.adapter.OnSelectListener
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), OnSelectListener, OnCategorySelectListener {
+class MainActivity : AppCompatActivity()/*, OnSelectListener, OnCategorySelectListener */{
 
     private lateinit var binding: ActivityMainBinding
-    private val categoryViewModel: CategoryViewModel by viewModels()
+/*    private val categoryViewModel: CategoryViewModel by viewModels()
     private lateinit var listRecommendationAdapter: ListRecommendationAdapter
-    private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var categoryAdapter: CategoryAdapter*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        categoryViewModel.getCategories()
+/*        categoryViewModel.getCategories()
         categoryViewModel.getRandomMeal()
-        observers()
+        observers()*/
     }
+/*
 
     private fun observers() {
         categoryViewModel.isLoading.observe(this, {
@@ -80,5 +68,6 @@ class MainActivity : AppCompatActivity(), OnSelectListener, OnCategorySelectList
 //        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 //        context.startActivity(intent)
     }
+*/
 
 }

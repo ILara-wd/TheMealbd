@@ -1,4 +1,4 @@
-package mx.aplazo.themeal.ui.category.adapter
+package mx.aplazo.themeal.ui.home.adapter
 
 import android.app.Activity
 import android.util.DisplayMetrics
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import mx.aplazo.themeal.R
+import mx.aplazo.themeal.Tools.showImage
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.databinding.ItemCategoriesBinding
 
@@ -39,13 +40,8 @@ class CategoryAdapter(
         val data = dataCategories[position]
         with(holder) {
             binding.tvCategory.text = data.strCategory
-            Glide.with(itemView.context)
-                .load(data.strCategoryThumb)
-                .placeholder(R.drawable.placeholder)
-                .into(binding.ivCategory)
-
+            itemView.context.showImage(data.strCategoryThumb, binding.ivCategory)
             binding.contentItem.layoutParams.width = getSizeDisplay()
-
             binding.contentItem.setOnClickListener {
                 onCategorySelectListener.onClickCategory(category = data)
             }

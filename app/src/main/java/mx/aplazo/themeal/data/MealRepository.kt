@@ -15,7 +15,7 @@ class MealRepository @Inject constructor(
         return response
     }
 
-    suspend fun getMealsByCategory(category: String): MutableList<MealModel> {
+    suspend fun getMealsByCategory(category: String): MutableList<MealFilter> {
         val response = api.getMealsByCategory(category = category)
         quoteProvider.meals = response
         return response
