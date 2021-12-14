@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -77,18 +78,8 @@ class HomeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
     }
 
     override fun onClickCategory(category: Category) {
-        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
-//        val action =
-//            MenuTransferFragmentDirections.actionMenuTransferFragmentToCreateTransferFragment(
-//                0,
-//                "",
-//                tipoTransferencia = null,
-//                flagTransfer = 0,
-//                flagRemision = 0,
-//                unidadesGuia = 0
-//            )
-//
-//        findNavController().navigate(action)
+        val bundle = bundleOf("category" to category)
+        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
     }
 
 

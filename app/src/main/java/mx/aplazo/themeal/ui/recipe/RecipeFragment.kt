@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import dagger.hilt.android.AndroidEntryPoint
 import mx.aplazo.themeal.data.model.Category
 import mx.aplazo.themeal.data.model.MealDetail
+import mx.aplazo.themeal.data.model.MealFilter
 import mx.aplazo.themeal.databinding.FragmentCategoryBinding
 import mx.aplazo.themeal.databinding.FragmentMealDetailBinding
 import mx.aplazo.themeal.ui.home.adapter.OnCategorySelectListener
@@ -18,16 +19,21 @@ class RecipeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
 
     private var _binding: FragmentMealDetailBinding? = null
     private val binding get() = _binding!!
+    private lateinit var mealFilter: MealFilter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMealDetailBinding.inflate(inflater, container, false)
-
+        initView()
         observers()
 
         return binding.root
+    }
+
+    private fun initView() {
+        binding.toolbarDetail.setNavigationOnClickListener { activity?.onBackPressed() }
     }
 
 
@@ -39,6 +45,10 @@ class RecipeFragment : Fragment(), OnSelectListener, OnCategorySelectListener {
     }
 
     override fun onClickCategory(category: Category) {
+    }
+
+    override fun setArguments(args: Bundle?) {
+        mealFilter = args?.getSerializable("mealFilter") as MealFilter
     }
 
 

@@ -1,30 +1,24 @@
 package mx.aplazo.themeal.ui.category
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import dagger.hilt.android.AndroidEntryPoint
 import mx.aplazo.themeal.R
 import mx.aplazo.themeal.Tools.showImage
 import mx.aplazo.themeal.data.model.Category
-import mx.aplazo.themeal.data.model.MealDetail
 import mx.aplazo.themeal.data.model.MealFilter
 import mx.aplazo.themeal.databinding.FragmentCategoryBinding
 import mx.aplazo.themeal.ui.category.adapter.OnSelectFilterListener
 import mx.aplazo.themeal.ui.category.adapter.RecipeFoodAdapter
-import mx.aplazo.themeal.ui.home.HomeViewModel
-import mx.aplazo.themeal.ui.home.adapter.CategoryAdapter
-import mx.aplazo.themeal.ui.home.adapter.OnCategorySelectListener
-import mx.aplazo.themeal.ui.home.adapter.OnSelectListener
 
 @AndroidEntryPoint
 class CategoryFragment : Fragment(), OnSelectFilterListener {
@@ -34,18 +28,18 @@ class CategoryFragment : Fragment(), OnSelectFilterListener {
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
 
-    private val idCategory = "13"
-    private val strCategory = "Breakfast"
-    private val strCategoryThumb = "https://www.themealdb.com/images/category/breakfast.png"
-    private val strCategoryDescription =
-        "Breakfast is the first meal of a day. The word in English refers to breaking the fasting period of the previous night. There is a strong likelihood for one or more \\\"typical\\\", or \\\"traditional\\\", breakfast menus to exist in most places, but their composition varies widely from place to place, and has varied over time, so that globally a very wide range of preparations and ingredients are now associated with breakfast."
+    private lateinit var category: Category
+
+    override fun setArguments(args: Bundle?) {
+        category = args?.getSerializable("category") as Category
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCategoryBinding.inflate(inflater, container, false)
-        categoryViewModel.getRecipeByCategory(strCategory)
+        categoryViewModel.getRecipeByCategory(category.strCategory)
         initView()
         observers()
         return binding.root
@@ -53,10 +47,11 @@ class CategoryFragment : Fragment(), OnSelectFilterListener {
 
     private fun initView() {
         binding.toolbarFilter.setNavigationOnClickListener { activity?.onBackPressed() }
-        binding.tvTitle.text = requireActivity().getString(R.string.text_recipes, strCategory)
-        binding.tvDescCategories.text = strCategoryDescription
-        requireContext().showImage(strCategoryThumb, binding.imgCategoriesBg)
-        requireContext().showImage(strCategoryThumb, binding.imgCategories)
+        binding.tvTitle.text =
+            requireActivity().getString(R.string.text_recipes, category.strCategory)
+        binding.tvDescCategories.text = category.strCategoryDescription
+        requireContext().showImage(category.strCategoryThumb, binding.imgCategoriesBg)
+        requireContext().showImage(category.strCategoryThumb, binding.imgCategories)
     }
 
     private fun showRecipe(mealRandom: MutableList<MealFilter>) {
@@ -78,7 +73,8 @@ class CategoryFragment : Fragment(), OnSelectFilterListener {
     }
 
     override fun onClickMeal(mealFilter: MealFilter) {
-        findNavController().navigate(R.id.action_categoryFragment_to_searchMealFragment)
+        val bundle = bundleOf("mealFilter" to mealFilter)
+        findNavController().navigate(R.id.action_categoryFragment_to_searchMealFragment, bundle)
     }
 
 }

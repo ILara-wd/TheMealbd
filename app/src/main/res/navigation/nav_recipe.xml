@@ -24,16 +24,19 @@
         <action
             android:id="@+id/action_categoryFragment_to_searchMealFragment"
             app:destination="@id/mealDetailFragment" />
-<!--        <argument-->
-<!--            android:name="levantaCaptura"-->
-<!--            android:defaultValue="0"-->
-<!--            app:argType="integer" />-->
+        <argument
+            android:name="category"
+            app:argType="mx.aplazo.themeal.data.model.Category" />
     </fragment>
     <fragment
         android:id="@+id/mealDetailFragment"
         android:name="mx.aplazo.themeal.ui.recipe.RecipeFragment"
         android:label="fragment_meal_detail"
-        tools:layout="@layout/fragment_meal_detail" />
+        tools:layout="@layout/fragment_meal_detail" >
+        <argument
+            android:name="mealFilter"
+            app:argType="mx.aplazo.themeal.data.model.MealFilter" />
+    </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/searchMealFragment"-->
 <!--        android:name="mx.aplazo.themeal.ui.category.CategoryFragment"-->
