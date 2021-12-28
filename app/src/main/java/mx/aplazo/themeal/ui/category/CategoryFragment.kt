@@ -67,7 +67,7 @@ class CategoryFragment : Fragment(), OnSelectFilterListener {
         categoryViewModel.recipeByCategory.observe(viewLifecycleOwner, { mealFilter ->
             showRecipe(mealFilter)
         })
-        categoryViewModel.isLoading.observe(this, {
+        categoryViewModel.isLoading.observe(viewLifecycleOwner, {
             binding.lottieAnimationView.isVisible = it
         })
     }

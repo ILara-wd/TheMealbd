@@ -38,10 +38,10 @@ class HomeViewModel @Inject constructor(
 
     fun getRandomMeal() {
         viewModelScope.launch {
-            isLoading.postValue(true)
+//            isLoading.postValue(true)
             val mealRandom = randomMealUseCase()
             randomMeal.postValue(mealRandom)
-            isLoading.postValue(false)
+//            isLoading.postValue(false)
         }
     }
 
